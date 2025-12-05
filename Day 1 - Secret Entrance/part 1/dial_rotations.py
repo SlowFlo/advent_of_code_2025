@@ -54,6 +54,60 @@ def count_zeros_after_rotations(
     return zeros
 
 
+def count_zeros_during_clicks(
+    rotations: Iterable[str], *, start: int = 50, size: int = 100
+) -> int:
+    """Return the number of clicks that land the dial on 0.
+
+    Counts every time an individual click during each rotation (including the
+    last click of a rotation) causes the dial to point at 0.
+
+    This is computed arithmetically without iterating per-click:
+    - For a right rotation, zero is hit at click offsets s where
+      (start + s) % size == 0. The minimal positive s is
+      s0 = (size - (start % size)) % size; if s0 == 0, the first positive hit is size.
+    - For a left rotation, zero is hit at click offsets s where
+      (start - s) % size == 0. The minimal positive s is start % size; if s0 == 0, first is size.
+    The count for a move of distance d is 0 if d < first; otherwise
+    1 + (d - first) // size.
+    """
+    pos = start % size
+    total = 0
+
+    for move in rotations:
+        move = move.strip()
+        if not move:
+            continue
+
+        direction = move[0].upper()
+        try:
+            distance = int(move[1:])
+        except ValueError as exc:
+            raise ValueError(f"Invalid move distance in '{move}'") from exc
+
+        d = distance  # raw distance (clicks), we cannot reduce by modulo before counting
+
+        # Compute first positive click offset that lands on 0 for the current direction
+        if direction == "R":
+            first = (size - (pos % size)) % size
+        elif direction == "L":
+            first = pos % size
+        else:
+            raise ValueError(f"Invalid move direction in '{move}': expected L or R")
+
+        if first == 0:
+            first = size
+
+        if d >= first:
+            hits = 1 + (d - first) // size
+            total += hits
+
+        # Update position after the full rotation (can reduce by modulo here)
+        pos = apply_rotation(pos, move, size=size)
+
+    return total
+
+
 def _read_input_lines(input_path: Path) -> list[str]:
     return [
         line.strip()
@@ -70,5 +124,6 @@ def _default_input_path() -> Path:
 if __name__ == "__main__":
     path = _default_input_path()
     rotations = _read_input_lines(path)
-    password = count_zeros_after_rotations(rotations, start=50, size=100)
+    # Method 0x434C49434B: count every click that lands on 0
+    password = count_zeros_during_clicks(rotations, start=50, size=100)
     print(password)
