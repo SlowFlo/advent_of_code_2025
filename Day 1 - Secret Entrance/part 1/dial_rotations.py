@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from pathlib import Path
 from typing import Iterable
+
+from utils import default_input_path, read_input_lines
 
 
 def apply_rotation(position: int, move: str, *, size: int) -> int:
@@ -108,22 +109,9 @@ def count_zeros_during_clicks(
     return total
 
 
-def _read_input_lines(input_path: Path) -> list[str]:
-    return [
-        line.strip()
-        for line in input_path.read_text(encoding="utf-8").splitlines()
-        if line.strip()
-    ]
-
-
-def _default_input_path() -> Path:
-    # The input file is puzzle_input.txt in the same folder as this module
-    return Path(__file__).with_name("puzzle_input.txt")
-
-
 if __name__ == "__main__":
-    path = _default_input_path()
-    rotations = _read_input_lines(path)
+    path = default_input_path()
+    rotations = read_input_lines(path)
     # Method 0x434C49434B: count every click that lands on 0
     password = count_zeros_during_clicks(rotations, start=50, size=100)
     print(password)
