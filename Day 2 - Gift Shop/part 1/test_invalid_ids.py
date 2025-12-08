@@ -15,8 +15,15 @@ def test_range_2_numbers(str_range, result):
     assert range_2_numbers(str_range) == result
 
 
-def test_is_id_valid():
-    assert is_id_valid(1)
+@pytest.mark.parametrize(
+    ["id", "result"],
+    [
+        ["1", True],
+        ["11", False],
+    ],
+)
+def test_is_id_valid(id, result):
+    assert is_id_valid(id) is result
 
 
 def test_range_2_numbers_1_3_is_1_2_3():
