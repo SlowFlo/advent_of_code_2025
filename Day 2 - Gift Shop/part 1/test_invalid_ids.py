@@ -40,6 +40,8 @@ def test_is_id_valid(id, result):
     ["str_range", "result"],
     [
         ["1-1", ()],
+        ["11-11", ("11",)],
+        ["11-22", ("11", "22")],
     ],
 )
 def test_invalid_ids_in_range(str_range, result):
