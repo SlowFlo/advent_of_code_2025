@@ -20,6 +20,7 @@ def test_range_2_numbers(str_range, result):
     [
         ["1", True],
         ["11", False],
+        ["12", True],
     ],
 )
 def test_is_id_valid(id, result):
