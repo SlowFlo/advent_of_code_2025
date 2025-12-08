@@ -1,6 +1,6 @@
 import pytest
 
-from invalid_ids import range_2_numbers, is_id_valid
+from invalid_ids import range_2_numbers, is_id_valid, invalid_ids_in_range
 
 
 @pytest.mark.parametrize(
@@ -36,5 +36,11 @@ def test_is_id_valid(id, result):
     assert is_id_valid(id) is result
 
 
-def test_range_2_numbers_1_3_is_1_2_3():
-    assert range_2_numbers("1-3") == (1, 2, 3)
+@pytest.mark.parametrize(
+    ["str_range", "result"],
+    [
+        ["1-1", ()],
+    ],
+)
+def test_invalid_ids_in_range(str_range, result):
+    assert invalid_ids_in_range(str_range) == result
