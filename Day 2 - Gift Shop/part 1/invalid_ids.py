@@ -13,7 +13,7 @@ def is_id_valid(id: str) -> bool:
     return True
 
 
-def invalid_ids_in_range(str_range: str) -> tuple[str, ...]:
+def invalid_ids_in_range(str_range: str) -> tuple[int, ...]:
     numbers_in_range = range_2_numbers(str_range)
 
-    return tuple(str(x) for x in numbers_in_range if not is_id_valid(str(x)))
+    return tuple(x for x in numbers_in_range if not is_id_valid(str(x)))
