@@ -1,4 +1,5 @@
 import itertools
+import re
 
 from utils import default_input_path, read_input_lines
 
@@ -9,10 +10,21 @@ def range_2_numbers(str_range: str) -> tuple[int]:
 
 
 def is_id_valid(id: str) -> bool:
-    if len(id) % 2 == 1:
+    if len(id) == 1:
         return True
 
-    if id[: len(id) // 2] == id[len(id) // 2 :]:
+    pattern = id[0]
+    for c in id[1:]:
+        if c != id[0]:
+            pattern += c
+        else:
+            break
+
+    number_of_mathes = len(re.findall(pattern, id))
+    if number_of_mathes == 1:
+        return True
+
+    if number_of_mathes * len(pattern) == len(id):
         return False
 
     return True
