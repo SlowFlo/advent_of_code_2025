@@ -7,6 +7,7 @@ def is_id_valid(id: str) -> bool:
     if len(id) % 2 == 1:
         return True
 
-    if id[0] == id[1]:
+    if id[: len(id) // 2] == id[len(id) // 2 :]:
         return False
+
     return True
