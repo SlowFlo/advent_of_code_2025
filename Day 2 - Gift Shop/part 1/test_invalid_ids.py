@@ -28,6 +28,8 @@ def test_range_2_numbers(str_range, result):
         ["222222", False],
         ["446446", False],
         ["38593859", False],
+        ["223222", True],
+        ["1288511885", True],
     ],
 )
 def test_is_id_valid(id, result):
