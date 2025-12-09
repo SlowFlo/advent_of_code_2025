@@ -2,7 +2,20 @@ from utils import default_input_path, read_input_lines
 
 
 def find_2_first_biggest_numbers_in_bank(bank: str) -> str:
-    pass
+    if len(bank) == 2:
+        return bank
+
+    first = 0
+    second = 0
+    for c in bank[:-1]:
+        if int(c) > first:
+            first = int(c)
+
+    for c in bank[bank.index(str(first)) + 1 :]:
+        if int(c) > second:
+            second = int(c)
+
+    return f"{first}{second}"
 
 
 if __name__ == "__main__":
