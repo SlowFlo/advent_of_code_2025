@@ -13,19 +13,13 @@ def is_id_valid(id: str) -> bool:
     if len(id) == 1:
         return True
 
-    pattern = id[0]
-    for c in id[1:]:
-        if c != id[0]:
-            pattern += c
-        else:
-            break
+    for i in range(2, len(id) + 1):
+        if len(id) % i == 0:
+            slice_size = len(id) // i
+            slices = [id[j : j + slice_size] for j in range(0, len(id), slice_size)]
 
-    number_of_mathes = len(re.findall(pattern, id))
-    if number_of_mathes == 1:
-        return True
-
-    if number_of_mathes * len(pattern) == len(id):
-        return False
+            if len(set(slices)) == 1:
+                return False
 
     return True
 
