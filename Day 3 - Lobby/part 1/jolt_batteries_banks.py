@@ -2,9 +2,6 @@ from utils import default_input_path, read_input_lines
 
 
 def find_2_first_biggest_numbers_in_bank(bank: str) -> str:
-    if len(bank) == 2:
-        return bank
-
     first = 0
     second = 0
     for c in bank[:-1]:
