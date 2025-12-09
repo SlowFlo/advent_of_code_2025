@@ -1,5 +1,4 @@
 import itertools
-import re
 
 from utils import default_input_path, read_input_lines
 
@@ -10,18 +9,10 @@ def range_2_numbers(str_range: str) -> tuple[int]:
 
 
 def is_id_valid(id: str) -> bool:
-    if len(id) == 1:
-        return True
-
-    for i in range(2, len(id) + 1):
-        if len(id) % i == 0:
-            slice_size = len(id) // i
-            slices = [id[j : j + slice_size] for j in range(0, len(id), slice_size)]
-
-            if len(set(slices)) == 1:
-                return False
-
-    return True
+    # A string consists of a repeated substring if and only if
+    # it appears in the concatenation of itself (without the first and last characters).
+    # If find returns -1, the pattern is NOT found, so the ID is valid.
+    return (id + id).find(id, 1, -1) == -1
 
 
 def invalid_ids_in_range(str_range: str) -> tuple[int, ...]:
