@@ -1,9 +1,10 @@
 from utils import default_input_path, read_input_lines
 
 
-def find_2_first_biggest_numbers_in_bank(bank: str) -> str:
+def find_2_first_biggest_numbers_in_bank(bank: str) -> int:
     first = 0
     second = 0
+
     for c in bank[:-1]:
         if int(c) > first:
             first = int(c)
@@ -12,7 +13,7 @@ def find_2_first_biggest_numbers_in_bank(bank: str) -> str:
         if int(c) > second:
             second = int(c)
 
-    return f"{first}{second}"
+    return int(f"{first}{second}")
 
 
 if __name__ == "__main__":
