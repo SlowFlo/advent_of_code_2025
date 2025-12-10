@@ -2,7 +2,7 @@ from utils import default_input_path, read_input_lines
 
 
 def nb_roll_papers_accessible(grid: str) -> int:
-    return 1
+    return grid.count("@")
 
 
 if __name__ == "__main__":

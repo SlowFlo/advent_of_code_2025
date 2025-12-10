@@ -12,6 +12,12 @@ from forklift_accessibility import *
 ...""",
             1,
         ],
+        [
+            """...
+.@@
+...""",
+            2,
+        ],
     ],
 )
 def test_find_2_first_biggest_numbers_in_bank(grid, result):
