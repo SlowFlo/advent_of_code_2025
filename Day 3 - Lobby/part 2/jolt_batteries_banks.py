@@ -27,6 +27,6 @@ if __name__ == "__main__":
     path = default_input_path()
     banks = read_input_lines(path)
 
-    total_output_joltage = sum(map(find_2_first_biggest_numbers_in_bank, banks))
+    total_output_joltage = sum(map(find_12_first_biggest_numbers_in_bank, banks))
 
     print(total_output_joltage)
