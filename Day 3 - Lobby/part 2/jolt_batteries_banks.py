@@ -1,19 +1,26 @@
 from utils import default_input_path, read_input_lines
 
 
-def find_2_first_biggest_numbers_in_bank(bank: str) -> int:
-    first = 0
-    second = 0
+def find_12_first_biggest_numbers_in_bank(bank: str) -> int:
+    current_bank = [int(c) for c in bank]
+    batterie_values = []
 
-    for c in bank[:-1]:
-        if int(c) > first:
-            first = int(c)
+    for batterie_id in range(1, 12 + 1):
+        batteries_left_to_pick = 12 - batterie_id
 
-    for c in bank[bank.index(str(first)) + 1 :]:
-        if int(c) > second:
-            second = int(c)
+        if batteries_left_to_pick == 0:
+            search_scope = current_bank
+        else:
+            search_scope = current_bank[:-batteries_left_to_pick]
 
-    return int(f"{first}{second}")
+        found_value = max(search_scope)
+        batterie_values.append(found_value)
+
+        index_in_scope = search_scope.index(found_value)
+
+        current_bank = current_bank[index_in_scope + 1 :]
+
+    return int("".join(map(str, batterie_values)))
 
 
 if __name__ == "__main__":
