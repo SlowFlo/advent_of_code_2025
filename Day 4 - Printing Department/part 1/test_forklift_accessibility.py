@@ -18,6 +18,18 @@ from forklift_accessibility import *
 ...""",
             2,
         ],
+        [
+            """..@
+.@@
+..@""",
+            4,
+        ],
+        [
+            """.@@
+.@@
+..@""",
+            4,
+        ],
     ],
 )
 def test_find_2_first_biggest_numbers_in_bank(grid, result):
