@@ -45,6 +45,9 @@ def test_total_roll_papers_accessible(grid, result):
         ["..@", ".@@", "..@", 2],
         [".@@", ".@@", "..@", 0],
         [".@@", "@@@", "..@", 1],
+        [None, "@@@", "..@", 3],
+        ["..@", "@@.", None, 2],
+        [None, "@.@", None, 2],
     ],
 )
 def test_count_roll_papers_accessible_in_middle_row(
