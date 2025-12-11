@@ -17,19 +17,6 @@ def count_roll_papers_accessible_in_middle_row(
             start = i - 1
             middle_row_slice = slice(i - 1, i + 2, 2)
 
-        print(
-            upper_row[start : i + 2],
-            upper_row[start : i + 2].count("@"),
-        )
-        print(
-            middle_row[middle_row_slice],
-            middle_row[middle_row_slice].count("@"),
-        )
-        print(
-            lower_row[start : i + 2],
-            lower_row[start : i + 2].count("@"),
-        )
-        print()
         if (
             c == "@"
             and upper_row[start : i + 2].count("@")
