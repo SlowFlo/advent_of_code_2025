@@ -10,33 +10,32 @@ def total_roll_papers_accessible(grid: str) -> int:
 def count_roll_papers_accessible_in_middle_row(
     upper_row: str | None, middle_row: str, lower_row: str | None
 ) -> int:
-    result = 0
+    count = 0
 
     for [i, c] in enumerate(middle_row):
-        if i == 0:
-            start = 0
-            middle_row_slice = slice(i + 1, i + 2)
-        else:
-            start = i - 1
-            middle_row_slice = slice(i - 1, i + 2, 2)
+        if c != "@":
+            continue
 
-        if upper_row is None:
-            upper_count = 0
-        else:
-            upper_count = upper_row[start : i + 2].count("@")
+        start = max(0, i - 1)
+        end = i + 2
 
-        if lower_row is None:
-            lower_count = 0
-        else:
-            lower_count = lower_row[start : i + 2].count("@")
+        nb_neighbors = 0
 
-        if (
-            c == "@"
-            and upper_count + middle_row[middle_row_slice].count("@") + lower_count < 4
-        ):
-            result += 1
+        if upper_row is not None:
+            nb_neighbors += upper_row[start:end].count("@")
 
-    return result
+        if lower_row is not None:
+            nb_neighbors += lower_row[start:end].count("@")
+
+        if i > 0 and middle_row[i - 1] == "@":
+            nb_neighbors += 1
+        if i < len(middle_row) - 1 and middle_row[i + 1] == "@":
+            nb_neighbors += 1
+
+        if nb_neighbors < 4:
+            count += 1
+
+    return count
 
 
 if __name__ == "__main__":
