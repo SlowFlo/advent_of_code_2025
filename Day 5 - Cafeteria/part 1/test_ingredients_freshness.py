@@ -1,6 +1,21 @@
 import pytest
 
-from ingredients_freshness import merge_ranges
+from ingredients_freshness import is_range_included_in_other_range, merge_ranges
+
+
+@pytest.mark.parametrize(
+    ["range_1", "range_2", "result"],
+    [
+        ["1-2", "3-5", False],
+        ["1-3", "2-5", False],
+        ["10-14", "16-20", False],
+        ["10-14", "8-20", True],
+        ["3-5", "1-20", True],
+        ["3-5", "3-5", True],
+    ],
+)
+def test_is_range_included_in_other_range(range_1, range_2, result):
+    assert is_range_included_in_other_range(range_1, range_2) == result
 
 
 @pytest.mark.parametrize(
@@ -13,6 +28,10 @@ from ingredients_freshness import merge_ranges
         [
             ["1-2", "3-5"],
             ["1-2", "3-5"],
+        ],
+        [
+            ["10-14", "16-20", "12-18"],
+            ["10-20"],
         ],
         [
             ["3-5", "10-14", "16-20", "12-18"],
