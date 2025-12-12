@@ -11,7 +11,10 @@ def default_input_path() -> Path:
     return Path(caller_frame.filename).with_name("puzzle_input.txt")
 
 
-def read_input_lines(input_path: Path) -> list[str]:
+def read_input_lines(input_path: Path, one_string: bool = False) -> list[str]:
+    if one_string:
+        return [input_path.read_text(encoding="utf-8").strip()]
+
     return [
         line.strip()
         for line in input_path.read_text(encoding="utf-8").splitlines()
