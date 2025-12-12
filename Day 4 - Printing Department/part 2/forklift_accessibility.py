@@ -58,13 +58,21 @@ def mark_roll_papers_accessible_in_middle_row(
 
 
 def total_removable_rolls(grid: str) -> int:
-    pass
+    total = 0
+
+    current_grid = grid
+
+    while (marked_grid := mark_roll_papers_accessible(current_grid)) != current_grid:
+        total += marked_grid.count("X")
+        current_grid = marked_grid.replace("X", ".")
+
+    return total
 
 
 if __name__ == "__main__":
     path = default_input_path()
     grid = read_input_lines(path, True)[0]
 
-    roll_papers_accessible = mark_roll_papers_accessible(grid)
+    nb_removed_rolls = total_removable_rolls(grid)
 
-    print(roll_papers_accessible)
+    print(nb_removed_rolls)
