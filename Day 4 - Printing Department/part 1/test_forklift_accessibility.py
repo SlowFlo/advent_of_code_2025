@@ -33,6 +33,19 @@ from forklift_accessibility import (
 ..@""",
             3,
         ],
+        [
+            """..@@.@@@@.
+@@@.@.@.@@
+@@@@@.@.@@
+@.@@@@..@.
+@@.@@@@.@@
+.@@@@@@@.@
+.@.@.@.@@@
+@.@@@.@@@@
+.@@@@@@@@.
+@.@.@@@.@.""",
+            13,
+        ],
     ],
 )
 def test_total_roll_papers_accessible(grid, result):
