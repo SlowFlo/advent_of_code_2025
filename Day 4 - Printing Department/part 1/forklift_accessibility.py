@@ -1,5 +1,3 @@
-from functools import reduce
-
 from utils import default_input_path, read_input_lines
 
 

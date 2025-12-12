@@ -1,8 +1,8 @@
 import pytest
 
 from forklift_accessibility import (
-    total_roll_papers_accessible,
-    count_roll_papers_accessible_in_middle_row,
+    mark_roll_papers_accessible,
+    mark_roll_papers_accessible_in_middle_row,
 )
 
 
@@ -13,25 +13,33 @@ from forklift_accessibility import (
             """...
 .@.
 ...""",
-            1,
+            """...
+.X.
+...""",
         ],
         [
             """...
 .@@
 ...""",
-            2,
+            """...
+.XX
+...""",
         ],
         [
             """..@
 .@@
 ..@""",
-            4,
+            """..X
+.XX
+..X""",
         ],
         [
             """.@@
 .@@
 ..@""",
-            3,
+            """.XX
+.@@
+..X""",
         ],
         [
             """..@@.@@@@.
@@ -44,29 +52,38 @@ from forklift_accessibility import (
 @.@@@.@@@@
 .@@@@@@@@.
 @.@.@@@.@.""",
-            13,
+            """..XX.XX@X.
+X@@.@.@.@@
+@@@@@.X.@@
+@.@@@@..@.
+X@.@@@@.@X
+.@@@@@@@.@
+.@.@.@.@@@
+X.@@@.@@@@
+.@@@@@@@@.
+X.X.@@@.X.""",
         ],
     ],
 )
 def test_total_roll_papers_accessible(grid, result):
-    assert total_roll_papers_accessible(grid) == result
+    assert mark_roll_papers_accessible(grid) == result
 
 
 @pytest.mark.parametrize(
     ["upper_row", "middle_row", "lower_row", "result"],
     [
-        ["..@", ".@@", "..@", 2],
-        [".@@", ".@@", "..@", 0],
-        [".@@", "@@@", "..@", 1],
-        [None, "@@@", "..@", 3],
-        ["..@", "@@.", None, 2],
-        [None, "@.@", None, 2],
+        ["..@", ".@@", "..@", ".XX"],
+        [".@@", ".@@", "..@", ".@@"],
+        [".@@", "@@@", "..@", "X@@"],
+        [None, "@@@", "..@", "XXX"],
+        ["..@", "@@.", None, "XX."],
+        [None, "@.@", None, "X.X"],
     ],
 )
-def test_count_roll_papers_accessible_in_middle_row(
+def test_mark_roll_papers_accessible_in_middle_row(
     upper_row, middle_row, lower_row, result
 ):
     assert (
-        count_roll_papers_accessible_in_middle_row(upper_row, middle_row, lower_row)
+        mark_roll_papers_accessible_in_middle_row(upper_row, middle_row, lower_row)
         == result
     )

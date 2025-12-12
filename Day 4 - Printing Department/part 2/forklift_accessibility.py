@@ -1,18 +1,19 @@
-from functools import reduce
-
 from utils import default_input_path, read_input_lines
 
 
-def total_roll_papers_accessible(grid: str) -> int:
+def mark_roll_papers_accessible(grid: str) -> str:
     lines = grid.splitlines()
-    total = 0
 
+    new_grid = ""
     for i, line in enumerate(lines):
         upper_row = lines[i - 1] if i > 0 else None
         lower_row = lines[i + 1] if i < len(lines) - 1 else None
-        total += count_roll_papers_accessible_in_middle_row(upper_row, line, lower_row)
+        new_grid += mark_roll_papers_accessible_in_middle_row(
+            upper_row, line, lower_row
+        )
+        new_grid += "\n"
 
-    return total
+    return new_grid.rstrip()
 
 
 def _count_neighbors(
@@ -37,23 +38,29 @@ def _count_neighbors(
     return count
 
 
-def count_roll_papers_accessible_in_middle_row(
+def mark_roll_papers_accessible_in_middle_row(
     upper_row: str | None, middle_row: str, lower_row: str | None
-) -> int:
+) -> str:
     result = 0
 
+    new_middle_row = ""
     for i, c in enumerate(middle_row):
         if c == "@":
             if _count_neighbors(upper_row, middle_row, lower_row, i) < 4:
                 result += 1
+                new_middle_row += "X"
+            else:
+                new_middle_row += "@"
+        else:
+            new_middle_row += c
 
-    return result
+    return new_middle_row
 
 
 if __name__ == "__main__":
     path = default_input_path()
     grid = read_input_lines(path, True)[0]
 
-    roll_papers_accessible = total_roll_papers_accessible(grid)
+    roll_papers_accessible = mark_roll_papers_accessible(grid)
 
     print(roll_papers_accessible)
