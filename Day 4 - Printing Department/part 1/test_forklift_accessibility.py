@@ -31,7 +31,7 @@ from forklift_accessibility import (
             """.@@
 .@@
 ..@""",
-            4,
+            3,
         ],
     ],
 )

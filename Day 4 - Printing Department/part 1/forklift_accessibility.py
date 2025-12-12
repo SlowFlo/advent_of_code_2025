@@ -4,8 +4,15 @@ from utils import default_input_path, read_input_lines
 
 
 def total_roll_papers_accessible(grid: str) -> int:
+    lines = grid.splitlines()
+    total = 0
 
-    return grid.count("@")
+    for i, line in enumerate(lines):
+        upper_row = lines[i - 1] if i > 0 else None
+        lower_row = lines[i + 1] if i < len(lines) - 1 else None
+        total += count_roll_papers_accessible_in_middle_row(upper_row, line, lower_row)
+
+    return total
 
 
 def _count_neighbors(
