@@ -3,6 +3,7 @@ import pytest
 from forklift_accessibility import (
     mark_roll_papers_accessible,
     mark_roll_papers_accessible_in_middle_row,
+    total_removable_rolls,
 )
 
 
@@ -87,3 +88,49 @@ def test_mark_roll_papers_accessible_in_middle_row(
         mark_roll_papers_accessible_in_middle_row(upper_row, middle_row, lower_row)
         == result
     )
+
+
+@pytest.mark.parametrize(
+    ["grid", "result"],
+    [
+        [
+            """...
+.@.
+...""",
+            1,
+        ],
+        [
+            """...
+.@@
+...""",
+            2,
+        ],
+        [
+            """..@
+.@@
+..@""",
+            4,
+        ],
+        [
+            """.@@
+.@@
+..@""",
+            5,
+        ],
+        [
+            """..@@.@@@@.
+@@@.@.@.@@
+@@@@@.@.@@
+@.@@@@..@.
+@@.@@@@.@@
+.@@@@@@@.@
+.@.@.@.@@@
+@.@@@.@@@@
+.@@@@@@@@.
+@.@.@@@.@.""",
+            43,
+        ],
+    ],
+)
+def test_total_removable_rolls(grid, result):
+    assert total_removable_rolls(grid) == result

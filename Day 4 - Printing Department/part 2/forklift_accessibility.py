@@ -57,6 +57,10 @@ def mark_roll_papers_accessible_in_middle_row(
     return new_middle_row
 
 
+def total_removable_rolls(grid: str) -> int:
+    pass
+
+
 if __name__ == "__main__":
     path = default_input_path()
     grid = read_input_lines(path, True)[0]
