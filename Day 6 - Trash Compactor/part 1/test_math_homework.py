@@ -1,6 +1,6 @@
 import pytest
 
-from math_homework import get_id_operations
+from math_homework import get_id_operations, calculate_problems_results
 
 
 @pytest.mark.parametrize(
@@ -17,3 +17,18 @@ from math_homework import get_id_operations
 )
 def test_get_id_operations(operations_str, result):
     assert get_id_operations(operations_str) == result
+
+
+@pytest.mark.parametrize(
+    ["problems", "result"],
+    [
+        [
+            """1
+1
++""",
+            [2],
+        ],
+    ],
+)
+def test_calculate_problems_results(problems, result):
+    assert calculate_problems_results(problems) == result

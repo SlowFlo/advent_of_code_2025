@@ -16,6 +16,10 @@ def get_id_operations(operations_str: str) -> dict[str, list[int]]:
     return operations_ids
 
 
+def calculate_problems_results(problems: str) -> list[int]:
+    pass
+
+
 if __name__ == "__main__":
     path = default_input_path()
     lines = read_input_lines(path)
