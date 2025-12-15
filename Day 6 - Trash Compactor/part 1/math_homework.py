@@ -2,7 +2,9 @@ from utils import default_input_path, read_input_lines
 
 
 def get_id_operations(operations_str: str) -> dict[str, list[int]]:
-    operations = [operation.strip() for operation in operations_str.split(" ")]
+    operations = [
+        operation.strip() for operation in operations_str.split(" ") if operation
+    ]
 
     operations_ids = {"additions": [], "multiplications": []}
     for id, operation in enumerate(operations):
