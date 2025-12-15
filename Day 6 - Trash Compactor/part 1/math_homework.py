@@ -1,8 +1,17 @@
 from utils import default_input_path, read_input_lines
 
 
-def get_id_operations(operations: str) -> dict[str, list[int]]:
-    return {"additions": [], "multiplications": []}
+def get_id_operations(operations_str: str) -> dict[str, list[int]]:
+    operations = [operation.strip() for operation in operations_str.split(" ")]
+
+    operations_ids = {"additions": [], "multiplications": []}
+    for id, operation in enumerate(operations):
+        if operation == "+":
+            operations_ids["additions"].append(id)
+        elif operation == "*":
+            operations_ids["multiplications"].append(id)
+
+    return operations_ids
 
 
 if __name__ == "__main__":
