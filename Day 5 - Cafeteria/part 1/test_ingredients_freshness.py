@@ -52,7 +52,7 @@ def test_merge_ranges(ranges, result):
 
 
 @pytest.mark.parametrize(
-    ["ranges", "id", "result"],
+    ["ranges", "item_id", "result"],
     [
         [
             ["1-2"],
@@ -82,5 +82,5 @@ def test_merge_ranges(ranges, result):
         # ],
     ],
 )
-def test_is_id_in_ranges(ranges, id, result):
-    assert is_id_in_ranges(ranges, id) == result
+def test_is_id_in_ranges(ranges, item_id, result):
+    assert is_id_in_ranges(ranges, item_id) == result

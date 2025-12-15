@@ -31,7 +31,7 @@ def merge_ranges(ranges: list[str]) -> list[str]:
     return [f"{start}-{end}" for start, end in merged]
 
 
-def is_id_in_ranges(ranges: list[str], id: str) -> bool:
+def is_id_in_ranges(ranges: list[str], item_id: str) -> bool:
     pass
 
 
