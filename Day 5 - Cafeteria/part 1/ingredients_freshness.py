@@ -40,6 +40,10 @@ def is_id_in_ranges(ranges: list[str], item_id: str) -> bool:
     return False
 
 
+def get_ids_in_ranges(ranges: list[str], item_ids: list[str]) -> list[str]:
+    pass
+
+
 if __name__ == "__main__":
     path = default_input_path()
     lines = read_input_lines(path)

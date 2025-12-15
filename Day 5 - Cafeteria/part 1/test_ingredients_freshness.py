@@ -4,6 +4,7 @@ from ingredients_freshness import (
     is_range_included_in_other_range,
     merge_ranges,
     is_id_in_ranges,
+    get_ids_in_ranges,
 )
 
 
@@ -64,3 +65,19 @@ def test_merge_ranges(ranges, result):
 )
 def test_is_id_in_ranges(ranges, item_id, result):
     assert is_id_in_ranges(ranges, item_id) == result
+
+
+@pytest.mark.parametrize(
+    ["ranges", "item_ids", "result"],
+    [
+        [["1-2"], ["1"], ["1"]],
+        [["1-2"], ["3"], []],
+        [["1-2", "4-6"], ["4"], ["4"]],
+        [["1-2", "4-6"], ["3"], []],
+        [["1-2", "4-6"], ["1", "6"], ["1", "6"]],
+        [["1-2", "4-6"], ["3", "6"], ["6"]],
+        [["1-2", "4-6"], ["3", "7"], []],
+    ],
+)
+def test_get_ids_in_ranges(ranges, item_ids, result):
+    assert get_ids_in_ranges(ranges, item_ids) == result
