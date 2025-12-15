@@ -37,6 +37,6 @@ if __name__ == "__main__":
     path = default_input_path()
     problems = read_input_lines(path, True)[0]
 
-    calculate_problems_results(problems)
+    grand_total = sum(calculate_problems_results(problems))
 
-    print()
+    print(grand_total)
