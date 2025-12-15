@@ -25,6 +25,11 @@ def calculate_problems_results(problems: str) -> list[int]:
         for numbers in numbers_lines:
             results[addition_id] += int(numbers[addition_id])
 
+    for multiplication_id in operations_ids["multiplications"]:
+        results[multiplication_id] = 1
+        for numbers in numbers_lines:
+            results[multiplication_id] *= int(numbers[multiplication_id])
+
     return results
 
 
