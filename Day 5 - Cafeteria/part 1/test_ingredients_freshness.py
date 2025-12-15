@@ -45,3 +45,38 @@ def test_is_range_included_in_other_range(range_1, range_2, result):
 )
 def test_merge_ranges(ranges, result):
     assert merge_ranges(ranges) == result
+
+
+@pytest.mark.parametrize(
+    ["ranges", "id", "result"],
+    [
+        [
+            ["1-2"],
+            "1",
+            True,
+        ],
+        [
+            ["1-2"],
+            "3",
+            False,
+        ],
+        [
+            ["1-2", "3-5"],
+            ["1-2", "3-5"],
+        ],
+        [
+            ["10-14", "13-20"],
+            ["10-20"],
+        ],
+        [
+            ["10-14", "16-20", "12-18"],
+            ["10-20"],
+        ],
+        [
+            ["3-5", "10-14", "16-20", "12-18"],
+            ["3-5", "10-20"],
+        ],
+    ],
+)
+def test_is_id_in_ranges(ranges, id, result):
+    assert is_id_in_ranges(ranges, id) == result

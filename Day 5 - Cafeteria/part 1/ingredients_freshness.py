@@ -31,6 +31,10 @@ def merge_ranges(ranges: list[str]) -> list[str]:
     return [f"{start}-{end}" for start, end in merged]
 
 
+def is_id_in_ranges(ranges: list[str], id: str) -> bool:
+    pass
+
+
 if __name__ == "__main__":
     path = default_input_path()
     lines = read_input_lines(path)
