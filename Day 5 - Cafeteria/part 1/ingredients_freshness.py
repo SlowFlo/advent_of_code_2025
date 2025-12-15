@@ -49,11 +49,18 @@ if __name__ == "__main__":
     lines = read_input_lines(path)
 
     ranges = []
+    ids = []
+    reading_ranges = True
     for line in lines:
         if line == "":
-            break
+            reading_ranges = False
+            continue
 
-        ranges.append(line)
+        if reading_ranges:
+            ranges.append(line)
+        else:
+            ids.append(line)
 
-    print(len(ranges))
-    print(len(merge_ranges(ranges)))
+    ids_in_ranges = get_ids_in_ranges(ranges, ids)
+
+    print(len(ids_in_ranges))
