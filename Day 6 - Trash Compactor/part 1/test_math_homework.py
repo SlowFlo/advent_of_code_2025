@@ -12,6 +12,7 @@ from math_homework import get_id_operations
         ["+ *", {"additions": [0], "multiplications": [1]}],
         ["+ +", {"additions": [0, 1], "multiplications": []}],
         ["+ * +", {"additions": [0, 2], "multiplications": [1]}],
+        ["*   +   *   +  ", {"additions": [1, 3], "multiplications": [0, 2]}],
     ],
 )
 def test_get_id_operations(operations_str, result):
