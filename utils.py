@@ -16,7 +16,5 @@ def read_input_lines(input_path: Path, one_string: bool = False) -> list[str]:
         return [input_path.read_text(encoding="utf-8").strip()]
 
     return [
-        line.strip()
-        for line in input_path.read_text(encoding="utf-8").splitlines()
-        if line.strip()
+        line.strip() for line in input_path.read_text(encoding="utf-8").splitlines()
     ]
