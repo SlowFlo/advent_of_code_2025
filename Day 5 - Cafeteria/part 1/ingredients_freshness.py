@@ -41,7 +41,7 @@ def is_id_in_ranges(ranges: list[str], item_id: str) -> bool:
 
 
 def get_ids_in_ranges(ranges: list[str], item_ids: list[str]) -> list[str]:
-    return list(filter(lambda id: is_id_in_ranges(ranges, id), item_ids))
+    return [item_id for item_id in item_ids if is_id_in_ranges(ranges, item_id)]
 
 
 if __name__ == "__main__":
