@@ -32,7 +32,12 @@ def merge_ranges(ranges: list[str]) -> list[str]:
 
 
 def is_id_in_ranges(ranges: list[str], item_id: str) -> bool:
-    pass
+    for range in ranges:
+        start, last = range.split("-")
+        if int(start) <= int(item_id) <= int(last):
+            return True
+
+    return False
 
 
 if __name__ == "__main__":
