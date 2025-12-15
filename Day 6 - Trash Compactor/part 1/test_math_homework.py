@@ -28,6 +28,12 @@ def test_get_id_operations(operations_str, result):
 +""",
             [2],
         ],
+        [
+            """1
+1
+*""",
+            [1],
+        ],
     ],
 )
 def test_calculate_problems_results(problems, result):

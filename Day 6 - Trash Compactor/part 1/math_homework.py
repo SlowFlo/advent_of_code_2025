@@ -2,9 +2,7 @@ from utils import default_input_path, read_input_lines
 
 
 def get_id_operations(operations_str: str) -> dict[str, list[int]]:
-    operations = [
-        operation.strip() for operation in operations_str.split(" ") if operation
-    ]
+    operations = [operation.strip() for operation in operations_str.split()]
 
     operations_ids = {"additions": [], "multiplications": []}
     for id, operation in enumerate(operations):
@@ -17,11 +15,23 @@ def get_id_operations(operations_str: str) -> dict[str, list[int]]:
 
 
 def calculate_problems_results(problems: str) -> list[int]:
-    return [2]
+    problems_lines = problems.splitlines()
+
+    operations_ids = get_id_operations(problems_lines[-1])
+    numbers_lines = [numbers.split() for numbers in problems_lines[:-1]]
+
+    results = [0 for _ in range(len(numbers_lines[0]))]
+    for addition_id in operations_ids["additions"]:
+        for numbers in numbers_lines:
+            results[addition_id] += int(numbers[addition_id])
+
+    return results
 
 
 if __name__ == "__main__":
     path = default_input_path()
-    lines = read_input_lines(path)
+    problems = read_input_lines(path, True)[0]
 
-    print(lines)
+    calculate_problems_results(problems)
+
+    print()
