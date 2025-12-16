@@ -34,11 +34,16 @@ def calculate_problems_results(problems: str) -> list[int]:
 
 
 def get_problem_numbers(problems: str) -> list[int]:
-    str_number = ""
-    for line in problems.splitlines():
-        str_number += line
+    lines = problems.splitlines()
+    str_numbers = ["" for _ in range(len(lines[0]))]
 
-    return [int(str_number)]
+    for line in lines:
+        for i, c in enumerate(line):
+            str_numbers[i] += c
+
+    numbers = [int(str_number) for str_number in str_numbers if str_number.strip()]
+
+    return numbers
 
 
 if __name__ == "__main__":

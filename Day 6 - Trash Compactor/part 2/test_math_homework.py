@@ -75,6 +75,11 @@ def test_calculate_problems_results(problems, result):
 4""",
             [54],
         ],
+        [
+            """12
+ 4""",
+            [1, 24],
+        ],
     ],
 )
 def test_get_problems_numbers(problems, result):
