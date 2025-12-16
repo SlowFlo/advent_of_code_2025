@@ -1,6 +1,10 @@
 import pytest
 
-from math_homework import get_id_operations, calculate_problems_results
+from math_homework import (
+    get_id_operations,
+    calculate_problems_results,
+    get_problem_numbers,
+)
 
 
 @pytest.mark.parametrize(
@@ -22,18 +26,6 @@ def test_get_id_operations(operations_str, result):
 @pytest.mark.parametrize(
     ["problems", "result"],
     [
-        [
-            """5
-4
-+""",
-            [9],
-        ],
-        [
-            """7
-3
-*""",
-            [21],
-        ],
         [
             """52
  3
@@ -69,3 +61,17 @@ def test_get_id_operations(operations_str, result):
 )
 def test_calculate_problems_results(problems, result):
     assert calculate_problems_results(problems) == result
+
+
+@pytest.mark.parametrize(
+    ["problems", "result"],
+    [
+        [
+            """5
+4""",
+            [54],
+        ],
+    ],
+)
+def test_get_problems_numbers(problems, result):
+    assert get_problem_numbers(problems) == result

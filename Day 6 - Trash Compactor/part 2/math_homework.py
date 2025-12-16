@@ -18,7 +18,7 @@ def calculate_problems_results(problems: str) -> list[int]:
     problems_lines = problems.splitlines()
 
     operations_ids = get_id_operations(problems_lines[-1])
-    numbers_lines = [numbers.split() for numbers in problems_lines[:-1]]
+    numbers_lines = [numbers.split(" ") for numbers in problems_lines[:-1]]
 
     results = [0 for _ in range(len(numbers_lines[0]))]
     for addition_id in operations_ids["additions"]:
@@ -31,6 +31,10 @@ def calculate_problems_results(problems: str) -> list[int]:
             results[multiplication_id] *= int(numbers[multiplication_id])
 
     return results
+
+
+def get_problem_numbers(problems: str) -> list[int]:
+    pass
 
 
 if __name__ == "__main__":
