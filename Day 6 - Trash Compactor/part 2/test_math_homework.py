@@ -80,6 +80,12 @@ def test_calculate_problems_results(problems, result):
  4""",
             [1, 24],
         ],
+        [
+            """328
+64 
+98 """,
+            [369, 248, 8],
+        ],
     ],
 )
 def test_get_problems_numbers(problems, result):
