@@ -86,7 +86,7 @@ def test_calculate_problems_results(problems, result):
 98 """,
             [[369, 248, 8]],
         ],
-[
+        [
             """123 328
  45 64 
   6 98 """,
