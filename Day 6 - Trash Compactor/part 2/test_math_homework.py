@@ -67,6 +67,10 @@ def test_calculate_problems_results(problems, result):
     ["problems", "result"],
     [
         [
+            "5",
+            [5],
+        ],
+        [
             """5
 4""",
             [54],

@@ -34,7 +34,11 @@ def calculate_problems_results(problems: str) -> list[int]:
 
 
 def get_problem_numbers(problems: str) -> list[int]:
-    return [54]
+    str_number = ""
+    for line in problems.splitlines():
+        str_number += line
+
+    return [int(str_number)]
 
 
 if __name__ == "__main__":
