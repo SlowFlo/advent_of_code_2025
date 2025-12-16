@@ -64,35 +64,40 @@ def test_calculate_problems_results(problems, result):
 
 
 @pytest.mark.parametrize(
-    ["problems", "result"],
+    ["problems", "problems_sizes", "result"],
     [
         [
             "5",
+            [1],
             [[5]],
         ],
         [
             """5
 4""",
+            [1],
             [[54]],
         ],
         [
             """12
  4""",
+            [2],
             [[1, 24]],
         ],
         [
             """328
 64 
 98 """,
+            [3],
             [[369, 248, 8]],
         ],
         [
             """123 328
  45 64 
   6 98 """,
+            [3, 3],
             [[1, 24, 356], [369, 248, 8]],
         ],
     ],
 )
-def test_get_problems_numbers(problems, result):
-    assert get_problem_numbers(problems) == result
+def test_get_problems_numbers(problems, problems_sizes, result):
+    assert get_problem_numbers(problems, problems_sizes) == result
