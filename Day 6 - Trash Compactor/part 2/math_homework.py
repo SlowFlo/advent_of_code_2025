@@ -33,17 +33,24 @@ def calculate_problems_results(problems: str) -> list[int]:
     return results
 
 
-def get_problem_numbers(problems: str) -> list[int]:
+def get_problem_numbers(problems: str, problems_sizes: list[int]) -> list[list[int]]:
     lines = problems.splitlines()
-    str_numbers = ["" for _ in range(len(lines[0]))]
+    str_problems_numbers = [["" for _ in range(size)] for size in problems_sizes]
 
     for line in lines:
-        for i, c in enumerate(line):
-            str_numbers[i] += c
+        for i, size in enumerate(problems_sizes):
+            nb_of_breaking_spaces = i
+            nb_of_preceding_chars = sum(problems_sizes[:i]) + nb_of_breaking_spaces
+            problem_columns_digit = line[
+                nb_of_preceding_chars : nb_of_preceding_chars + size
+            ]
 
-    numbers = [int(str_number) for str_number in str_numbers if str_number.strip()]
+            for j, c in enumerate(problem_columns_digit):
+                str_problems_numbers[i][j] += c
 
-    return numbers
+    numbers = [[int(str_number)] for str_numbers in str_problems_numbers]
+
+    return [numbers]
 
 
 if __name__ == "__main__":
